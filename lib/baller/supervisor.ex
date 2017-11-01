@@ -1,6 +1,6 @@
 defmodule Snow.Baller.Supervisor do
   use Supervisor
-  alias Snow.Baller.{Streamer,Store}
+  alias Snow.Baller.Store
 
   def start_link do
     Supervisor.start_link(__MODULE__, [])
@@ -8,7 +8,7 @@ defmodule Snow.Baller.Supervisor do
 
   def init(_) do
     children = [
-      worker(Store, []),
+      worker(Store, [])
     ]
 
     supervise(children, strategy: :one_for_one)
